@@ -62,25 +62,31 @@ I chose four main columns to clean, mainly dealing with converting data type for
 
 
 ## Explore a Machine Learning Algorithm
-
 ### Coding part
- I chose to generate a Random Forest model and a XGBoost model to compare with each other in terms of their RSME and R^2
- 1. Feature Engineering: create a new colunm called "disctounted_rate" calculated by (listed_price-current/discounted_price)/listed_price, combine with other columns from the cleaned dataframe to be evaluated as the features: rating, number_of_reviews, listed_price, discount_rate. Leave current/discounted_price as target of study. 
- 2. split the data set, and using only 20% on testing with train_test_split()
- 3. train the Random Forest model using RandomForestRegressor(), setting 100 decision trees and the seed to be 42
- 4. train the XGBoost model using XGBRegressor(), setting 100 decision trees with equal contribution to the result, and the seed to be 42.
- 5. evaluate the model by calculating RMSE(the lower the better) and R^2(the closer to 1 the better)
+I chose to generate a Random Forest model and a XGBoost model to compare with each other in terms of their RSME and R^2
 
-### Analysis part
-the result of evaluation shows that the RandomForest regression is better than the XGBoost regression, given by a lower RMSE(15.2 comparing to 24.87), as well as a higher R^2(0.999 comparing to 0.9972). Therefore, RandomForest model is used for future visualization. 
+1. Feature Engineering: create a new colunm called "disctounted_rate" calculated by (listed_price-current/discounted_price)/listed_price, combine with other columns from the cleaned dataframe to be evaluated as the features: rating, number_of_reviews, listed_price, discount_rate. Leave current/discounted_price as target of study.
+2. split the data set, and using only 20% on testing with train_test_split()
+3. train the Random Forest model using RandomForestRegressor(), setting 100 decision trees and the seed to be 42
+4. train the XGBoost model using XGBRegressor(), setting 100 decision trees with equal contribution to the result, and the seed to be 42.
+evaluate the model by calculating RMSE(the lower the better) and R^2(the closer to 1 the better)
+
+### Analysis part: Model Selection
+the result of evaluation shows that the RandomForest regression is better than the XGBoost regression, given by a lower RMSE(15.2 comparing to 24.87), as well as a higher R^2(0.999 comparing to 0.9972). Therefore, RandomForest model is used for future visualization.
 
 
 ## Visualization
- 
+### Coding part
+ 1. use plot_feature_importance(model, model_name) to visualize how important each feature is in predicting the target variable respectively from random forest and xgboost
+ 2. using matplotlib plot a scatterplot comparing actual vs. predicted prices from the Random Forest model
 
+ ### Analysis part
+From the feature importance grapg, we can see that both Random Forest and XGBoost shows taht the listed price is the primary signal for predicting the final price, even though disocunt rate plays a small part of the role.There’s minimal contribution from customer-centric features like rating or number_of_reviews.
+
+The Random Forest model demonstrates a good predictive performance, suggesting that the current feature set (mainly listed_price) captures most of the variability in the pricing.
 
 ## Documentation
- Explain your steps and findings in this README.md file.
+ Explain your steps and findings in this README.md file.(shown in the above)
 
 
 
