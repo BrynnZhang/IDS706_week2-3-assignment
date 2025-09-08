@@ -62,10 +62,17 @@ I chose four main columns to clean, mainly dealing with converting data type for
 
 
 ## Explore a Machine Learning Algorithm
+
+### Coding part
  I chose to generate a Random Forest model and a XGBoost model to compare with each other in terms of their RSME and R^2
- 
+ 1. Feature Engineering: create a new colunm called "disctounted_rate" calculated by (listed_price-current/discounted_price)/listed_price, combine with other columns from the cleaned dataframe to be evaluated as the features: rating, number_of_reviews, listed_price, discount_rate. Leave current/discounted_price as target of study. 
+ 2. split the data set, and using only 20% on testing with train_test_split()
+ 3. train the Random Forest model using RandomForestRegressor(), setting 100 decision trees and the seed to be 42
+ 4. train the XGBoost model using XGBRegressor(), setting 100 decision trees with equal contribution to the result, and the seed to be 42.
+ 5. evaluate the model by calculating RMSE(the lower the better) and R^2(the closer to 1 the better)
 
-
+### Analysis part
+the result of evaluation shows that the RandomForest regression is better than the XGBoost regression, given by a lower RMSE(15.2 comparing to 24.87), as well as a higher R^2(0.999 comparing to 0.9972). Therefore, RandomForest model is used for future visualization. 
 
 
 ## Visualization
