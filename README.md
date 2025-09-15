@@ -2,6 +2,28 @@
 
 This assignment is the first part of a two-week project. Choose a beginner-friendly dataset from sources like Kaggle or public APIs. Perform basic data analysis using Pandas (and Polars for advanced students). This includes importing data, inspecting it, applying filters and groupings, and optionally visualizing it. You’ll also begin exploring a machine learning algorithm of your choice.
 
+## project Structure 
+
+├── __pycache__/                           # Compiled Python cache
+├── .devcontainer/                         # Dev container setup
+│   ├── devcontainer.json
+│   └── Dockerfile
+├── .github/                               # (Optional) GitHub workflows
+├── .pytest_cache/                         # Pytest cache
+├── .vscode/                               # VSCode settings
+│   └── launch.json
+├── path/                                  # (Custom folder, reserved for future use)
+├── .gitignore                             # Git ignore rules
+├── amazon_cleaned.csv                     # Cleaned dataset
+├── amazon_products_sales_data_uncleaned.csv # Raw dataset
+├── main.ipynb                             # Jupyter notebook for experimentation
+├── main.py                                # Main data cleaning + ML pipeline
+├── Makefile                               # Automation commands (optional)
+├── README.md                              # Project documentation
+├── requirements.txt                       # Python dependencies
+└── test_main.py                           # Unit & system test cases
+     
+
 ## Import the Dataset
 "amazon_products_sales_data_uncleaned.csv"- 38.6MB
 
@@ -84,6 +106,32 @@ the result of evaluation shows that the RandomForest regression is better than t
 From the feature importance grapg, we can see that both Random Forest and XGBoost shows taht the listed price is the primary signal for predicting the final price, even though disocunt rate plays a small part of the role.There’s minimal contribution from customer-centric features like rating or number_of_reviews.
 
 The Random Forest model demonstrates a good predictive performance, suggesting that the current feature set (mainly listed_price) captures most of the variability in the pricing.
+
+## Test Cases
+1. Data Loading: Ensures CSV loads correctly
+2. Filtering: No null values after cleaning
+3. Grouping: Ratings grouped properly
+4. Preprocessing: Valid discount rate range
+5. Model Training: Models train & achieve R² > 0
+6. A/B Testing: Compares RandomForest vs XGBoost using RMSE
+
+run by  pytest -v test_main.py
+sample output: 
+================================================ test session starts ================================================
+platform linux -- Python 3.12.11, pytest-8.4.1, pluggy-1.6.0 -- /usr/local/py-utils/venvs/pytest/bin/python
+cachedir: .pytest_cache
+rootdir: /workspaces/IDS706_week2-3-assignment
+plugins: cov-7.0.0
+collected 6 items                                                                                                   
+test_main.py::test_csv_loads_correctly PASSED                                                                 [ 16%]
+test_main.py::test_no_missing_values_after_cleaning PASSED                                                    [ 33%]
+test_main.py::test_grouping_by_rating PASSED                                                                  [ 50%]
+test_main.py::test_discount_rate_calculation PASSED                                                           [ 66%]
+test_main.py::test_models_train_and_predict PASSED                                                            [ 83%]
+test_main.py::test_ab_testing_models PASSED                                                                   [100%]
+
+================================================= 6 passed in 4.18s =================================================
+
 
 ## Documentation
  Explain your steps and findings in this README.md file.(shown in the above)
