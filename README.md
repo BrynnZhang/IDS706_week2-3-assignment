@@ -3,7 +3,7 @@
 This assignment is the first part of a two-week project. Choose a beginner-friendly dataset from sources like Kaggle or public APIs. Perform basic data analysis using Pandas (and Polars for advanced students). This includes importing data, inspecting it, applying filters and groupings, and optionally visualizing it. You’ll also begin exploring a machine learning algorithm of your choice.
 
 ## project Structure 
-
+```
 ├── __pycache__/                           # Compiled Python cache
 ├── .devcontainer/                         # Dev container setup
 │   ├── devcontainer.json
@@ -22,7 +22,7 @@ This assignment is the first part of a two-week project. Choose a beginner-frien
 ├── README.md                              # Project documentation
 ├── requirements.txt                       # Python dependencies
 └── test_main.py                           # Unit & system test cases
-     
+```     
 
 ## Import the Dataset
 "amazon_products_sales_data_uncleaned.csv"- 38.6MB
@@ -114,7 +114,7 @@ The Random Forest model demonstrates a good predictive performance, suggesting t
 4. Preprocessing: Valid discount rate range
 5. Model Training: Models train & achieve R² > 0
 6. A/B Testing: Compares RandomForest vs XGBoost using RMSE
-
+```
 run by  pytest -v test_main.py
 sample output: 
 ================================================ test session starts ================================================
@@ -131,7 +131,7 @@ test_main.py::test_models_train_and_predict PASSED                              
 test_main.py::test_ab_testing_models PASSED                                                                   [100%]
 
 ================================================= 6 passed in 4.18s =================================================
-
+```
 
 ## Documentation
  Explain your steps and findings in this README.md file.(shown in the above)
