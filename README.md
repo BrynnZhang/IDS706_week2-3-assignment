@@ -97,7 +97,7 @@ evaluate the model by calculating RMSE(the lower the better) and R^2(the closer 
 the result of evaluation shows that the RandomForest regression is better than the XGBoost regression, given by a lower RMSE(15.2 comparing to 24.87), as well as a higher R^2(0.999 comparing to 0.9972). Therefore, RandomForest model is used for future visualization.
 
 
-## Visualization
+## Visualization (show in main.ipynb)
 ### Coding part
  1. use plot_feature_importance(model, model_name) to visualize how important each feature is in predicting the target variable respectively from random forest and xgboost
  2. using matplotlib plot a scatterplot comparing actual vs. predicted prices from the Random Forest model
