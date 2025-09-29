@@ -194,6 +194,34 @@ jobs:
 
 ```
 
+
+### update changes to github
+
+see what has been modified
+```
+git status
+```
+
+stage changes
+```
+git add xxx
+```
+
+commit changes
+```
+git commit -m"name"
+```
+
+push changes to git
+```
+git push
+```
+or 
+```
+git push original main --force
+```
+
+
 ## Documentation
  Explain your steps and findings in this README.md file.(shown in the above)
 
