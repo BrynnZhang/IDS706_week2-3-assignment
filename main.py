@@ -88,7 +88,8 @@ df["current/discounted_price"] = df.apply(
 
 # 3.remove all "," separator in current/discounted_price
 # and convert to numeric
-df["current/discounted_price"] = df["current/discounted_price"].str.replace(",", "")
+df["current/discounted_price"] = df[
+    "current/discounted_price"].str.replace(",", "")
 # print(df['current/discounted_price'])
 df["current/discounted_price"] = pd.to_numeric(df["current/discounted_price"])
 print(df["current/discounted_price"])
@@ -119,12 +120,14 @@ print(df["listed_price"])
 
 # check missing value, should align with
 # current/discounted_price(2062 after cleaning)
-print("Missing values after cleaning:", "\n", df["listed_price"].isnull().sum())
+print("Missing values after cleaning:",
+      "\n", df["listed_price"].isnull().sum())
 
 # keep only title, rating, number_of_reviews,
 # current/discounted_price, listed_price columns
 df_filtered = df[
-    ["title", "rating", "number_of_reviews", "current/discounted_price", "listed_price"]
+    ["title", "rating", "number_of_reviews",
+     "current/discounted_price", "listed_price"]
 ]
 # drop rows with missing values
 df_cleaned = df_filtered.dropna()
