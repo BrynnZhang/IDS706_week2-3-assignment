@@ -42,7 +42,7 @@ print("Missing values:", "\n", plf.null_count())
 # check the missing value in each column
 for i in range(plf.width):
     print(
-        f"Missing values in column {i+1}:",
+        f"Missing values in column {i + 1}:",
         plf.select(pl.col(plf.columns[i]).is_null().sum()),
     )
 
@@ -88,8 +88,7 @@ df["current/discounted_price"] = df.apply(
 
 # 3.remove all "," separator in current/discounted_price
 # and convert to numeric
-df["current/discounted_price"] = df[
-    "current/discounted_price"].str.replace(",", "")
+df["current/discounted_price"] = df["current/discounted_price"].str.replace(",", "")
 # print(df['current/discounted_price'])
 df["current/discounted_price"] = pd.to_numeric(df["current/discounted_price"])
 print(df["current/discounted_price"])
@@ -120,14 +119,12 @@ print(df["listed_price"])
 
 # check missing value, should align with
 # current/discounted_price(2062 after cleaning)
-print(
-    "Missing values after cleaning:", "\n", df["listed_price"].isnull().sum())
+print("Missing values after cleaning:", "\n", df["listed_price"].isnull().sum())
 
 # keep only title, rating, number_of_reviews,
 # current/discounted_price, listed_price columns
 df_filtered = df[
-    ["title", "rating", "number_of_reviews",
-     "current/discounted_price", "listed_price"]
+    ["title", "rating", "number_of_reviews", "current/discounted_price", "listed_price"]
 ]
 # drop rows with missing values
 df_cleaned = df_filtered.dropna()
@@ -157,26 +154,26 @@ df_cleaned["discount_rate"] = (
 
 # Define features (X) and target (y)
 features = ["rating", "number_of_reviews", "listed_price", "discount_rate"]
-X = df_cleaned[features]
+x = df_cleaned[features]
 y = df_cleaned["current/discounted_price"]
 
 # Train-test split: 20% data for testing, fixed seed = 42 for reproducibility
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42
+x_train, X_test, y_train, y_test = train_test_split(
+    x, y, test_size=0.2, random_state=42
 )
 
 # -----------------------------
 # Random Forest Regressor
 # -----------------------------
 rf_model = RandomForestRegressor(n_estimators=100, random_state=42)
-rf_model.fit(X_train, y_train)
+rf_model.fit(x_train, y_train)
 rf_preds = rf_model.predict(X_test)
 
 # -----------------------------
 # XGBoost Regressor
 # -----------------------------
 xgb_model = XGBRegressor(n_estimators=100, learning_rate=0.1, random_state=42)
-xgb_model.fit(X_train, y_train)
+xgb_model.fit(x_train, y_train)
 xgb_preds = xgb_model.predict(X_test)
 
 # Evaluation RMSE(the lower the better)

@@ -3,7 +3,7 @@
 This assignment is the first part of a two-week project. Choose a beginner-friendly dataset from sources like Kaggle or public APIs. Perform basic data analysis using Pandas (and Polars for advanced students). This includes importing data, inspecting it, applying filters and groupings, and optionally visualizing it. You’ll also begin exploring a machine learning algorithm of your choice.
 
 ## project Structure 
-
+```
 ├── __pycache__/                           # Compiled Python cache
 ├── .devcontainer/                         # Dev container setup
 │   ├── devcontainer.json
@@ -22,7 +22,7 @@ This assignment is the first part of a two-week project. Choose a beginner-frien
 ├── README.md                              # Project documentation
 ├── requirements.txt                       # Python dependencies
 └── test_main.py                           # Unit & system test cases
-     
+ ```    
 
 ## Import the Dataset
 "amazon_products_sales_data_uncleaned.csv"- 38.6MB
@@ -97,7 +97,7 @@ evaluate the model by calculating RMSE(the lower the better) and R^2(the closer 
 the result of evaluation shows that the RandomForest regression is better than the XGBoost regression, given by a lower RMSE(15.2 comparing to 24.87), as well as a higher R^2(0.999 comparing to 0.9972). Therefore, RandomForest model is used for future visualization.
 
 
-## Visualization
+## Visualization (show in main.ipynb)
 ### Coding part
  1. use plot_feature_importance(model, model_name) to visualize how important each feature is in predicting the target variable respectively from random forest and xgboost
  2. using matplotlib plot a scatterplot comparing actual vs. predicted prices from the Random Forest model
@@ -114,7 +114,7 @@ The Random Forest model demonstrates a good predictive performance, suggesting t
 4. Preprocessing: Valid discount rate range
 5. Model Training: Models train & achieve R² > 0
 6. A/B Testing: Compares RandomForest vs XGBoost using RMSE
-
+```
 run by  pytest -v test_main.py
 sample output: 
 ================================================ test session starts ================================================
@@ -131,7 +131,68 @@ test_main.py::test_models_train_and_predict PASSED                              
 test_main.py::test_ab_testing_models PASSED                                                                   [100%]
 
 ================================================= 6 passed in 4.18s =================================================
+```
 
+
+## Dev and Docker Container
+1. verify installation
+```
+docker --version
+```
+
+2. build image
+```
+docker build -t welcome-to-docker .
+```
+Once the build is complete, an image will appear in the Images tab. Select the image name to see its details. Select Run to run it as a container. In the Optional settings remember to specify a port number (something like 8089).
+
+3. run your container
+You can click "Run" in action column for image you just created from the Image list. If you don't have a name for your container, Docker provides one. View your container live by selecting the link below the container's name.
+
+4. search Docker images and view the container
+You can search images by selecting the bar at the top, or by using the ⌘ + K shortcut. Search for welcome-to-docker to find the image used in this guide.
+
+Go to the Containers tab in Docker Desktop to view the container.
+
+5. run the application
+```
+cd multi-container-app
+docker compose up -d
+```
+
+
+
+## CI flow
+
+```
+
+name: IDS706_week2-3-assignment
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Lint with flake8
+      run: flake8 main.py
+
+    - name: Run tests
+      run: pytest -v
+
+```
 
 ## Documentation
  Explain your steps and findings in this README.md file.(shown in the above)
