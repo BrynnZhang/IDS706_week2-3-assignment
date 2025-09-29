@@ -9,7 +9,7 @@ lint:
 	flake8 main.py --ignore=E226,E501
 
 test:
-	python -m pytest -vv --cov=hello test_main.py
+	python -m pytest -vv --cov=test test_main.py
 
 clean:
 	rm -rf __pycache__ .pytest_cache .coverage
