@@ -35,7 +35,7 @@ print(plf.head())
 
 # Show the statistical summary
 print(plf.describe())
-print("\n")
+print("\n") 
 
 # Check for missing values and duplicates
 print("Missing values:", "\n", plf.null_count())
