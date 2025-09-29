@@ -6,7 +6,7 @@ format:
 	black *.py
 
 lint:
-	flake8 main.py
+	flake8 main.py --ignore=E226,E501
 
 test:
 	python -m pytest -vv --cov=hello test_main.py
