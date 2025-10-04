@@ -1,6 +1,4 @@
-# IDS706_week2-3-assignment
-
-This assignment is the first part of a two-week project. Choose a beginner-friendly dataset from sources like Kaggle or public APIs. Perform basic data analysis using Pandas (and Polars for advanced students). This includes importing data, inspecting it, applying filters and groupings, and optionally visualizing it. You’ll also begin exploring a machine learning algorithm of your choice.
+# Amazon Data Engi
 
 ## project Structure 
 ```
